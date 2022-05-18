@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import AppLayout from '../components/AppLayout'
 import { colors } from '../styles/theme'
@@ -9,10 +9,10 @@ import {
   loginWithGitHub,
   onAuthStateChanged
 } from '../firebase/client'
+import Avatar from '../components/Avatar'
 
-export default function Home() {
-  const [user, setUser] = useState(null)
-  // const [user, setUser] = useState(undefined)
+export default function Home () {
+  const [user, setUser] = useState(undefined)
 
   useEffect(() => {
     onAuthStateChanged(setUser)
@@ -34,7 +34,7 @@ export default function Home() {
       <AppLayout>
         <section>
           <img src='/devter-logo.png' alt='Logo' />
-          <h1>Devter</h1>
+          <h1>TukiAp</h1>
           <h2>Talk about development<br />with developers 👩‍💻👨‍💻</h2>
 
           <div>
@@ -47,12 +47,15 @@ export default function Home() {
             }
             {
               user && user.avatar && <div>
-                <img src={user.avatar} />
-                <strong>{user.username}</strong>
+                <Avatar 
+                  alt={user.username} 
+                  src={user.avatar} 
+                  text={user.username}
+                />
               </div>
             }
           </div>
-          
+
         </section>
       </AppLayout>
 
